@@ -13,7 +13,10 @@ before_install:
     - sudo apt-get update -qq
     - sudo apt-get install -qq build-essential git cmake libfreeimage-dev cmake-curses-gui
     - sudo apt-get install -qq libopenblas-dev libfftw3-dev liblapacke-dev libboost-all-dev
-    - sudo apt-get install -qq libglfw3-dev libfontconfig1-dev
+    - sudo apt-get install -qq libfontconfig1-dev
+    - sudo apt-add-repository ppa:keithw/glfw3
+    - sudo apt-get update
+    - sudo apt-get install libglfw3
     - git clone https://github.com/arrayfire/arrayfire.git
     - cd arrayfire
     - git submodule init
