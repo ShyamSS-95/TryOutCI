@@ -45,8 +45,8 @@ jobs:
             mkdir build 
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=Release  -DCMAKE_INSTALL_PREFIX=package -DBUILD_GRAPHICS=OFF
+            make -j8
             make test
-            make -j2
             make install
             cd ../../
             pip install arrayfire
