@@ -27,7 +27,7 @@ before_install:
     - git submodule update
     - mkdir build 
     - cd build
-    - cmake .. -DCMAKE_BUILD_TYPE=Release  -DCMAKE_INSTALL_PREFIX=package
+    - cmake .. -DCMAKE_BUILD_TYPE=Release  -DCMAKE_INSTALL_PREFIX=package -DBUILD_GRAPHICS=OFF
     - make -j8
     - sudo make install
     - cd package
