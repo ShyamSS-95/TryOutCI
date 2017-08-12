@@ -29,12 +29,14 @@ before_install:
     - yes | bash ArrayFire-v3.5.0_Linux_x86_64.sh
     - export LD_LIBRARY_PATH=$HOME/TryOutTravis/arrayfire-3/lib:$LD_LIBRARY_PATH
     - echo $LD_LIBRARY_PATH
-    - pip install arrayfire
-    - python -m arrayfire.tests
+    - python3 -m venv venv
+    - . venv/bin/activate
+    - pip3 install arrayfire
+    - python3 -m arrayfire.tests
 
 install:
     - echo $LD_LIBRARY_PATH
     - pip install arrayfire
 
 script:
-    python -m arrayfire.tests
+    python3 -m arrayfire.tests
