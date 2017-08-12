@@ -42,15 +42,19 @@ jobs:
             wget http://arrayfire.s3.amazonaws.com/3.5.0/ArrayFire-v3.5.0_Linux_x86_64.sh
             yes | (sh ArrayFire-v3.5.0_Linux_x86_64.sh | less) &
             sleep 60
+            cd arrayfire-3
+            cd ..
             export LD_LIBRARY_PATH=$PWD/arrayfire-3/lib:$LD_LIBRARY_PATH
             echo $LD_LIBRARY_PATH
-            pip3 install arrayfire
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install arrayfire
 
       # run tests!
       - run:
           name: run tests
           command: |
-            python -m arrayfire.tests
+            python3 -m arrayfire.tests
 
       - store_artifacts:
           path: test-reports
