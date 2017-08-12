@@ -3,10 +3,6 @@ dist: trusty
 language: python
 python:
     - "3.5"
-env:
-    - AF_PATH=$HOME/TryOutTravis/arrayfire-3
-    - LD_LIBRARY_PATH="$AF_PATH/lib"
-    - PYTHON_PATH="$HOME/Bolt/:$PYTHON_PATH"
 
 # command to install dependencies
 before_install:
@@ -34,7 +30,9 @@ before_install:
     - cmake .. -DCMAKE_BUILD_TYPE=Release  -DCMAKE_INSTALL_PREFIX=package
     - make -j8
     - sudo make install
-    - cd package/lib
+    - cd package
+    - export AF_PATH=$PWD
+    - cd lib
     - export LD_LIBRARY_PATH=$PWD:$LD_LIBRARY_PATH
     - echo $LD_LIBRARY_PATH
     - cd ../../../../
