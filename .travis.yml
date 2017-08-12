@@ -25,19 +25,28 @@ before_install:
     - sudo make install
     - export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH 
     - cd ../../
-    - wget http://arrayfire.s3.amazonaws.com/3.5.0/ArrayFire-v3.5.0_Linux_x86_64.sh
-    - yes | bash ArrayFire-v3.5.0_Linux_x86_64.sh
-    - export LD_LIBRARY_PATH=$HOME/TryOutTravis/arrayfire-3/lib:$LD_LIBRARY_PATH
+    - git clone https://github.com/arrayfire/arrayfire.git
+    - cd arrayfire
+    - git submodule init
+    - git submodule update
+    - mkdir build 
+    - cd build
+    - cmake .. -DCMAKE_BUILD_TYPE=Release  -DCMAKE_INSTALL_PREFIX=package
+    - make -j8
+    - sudo make install
+    - cd package/lib
+    - export LD_LIBRARY_PATH=$PWD:$LD_LIBRARY_PATH
     - echo $LD_LIBRARY_PATH
+    - cd ../../../../
     - pip install virtualenv
-    - virtualenv -p /usr/bin/python3 venv 
+    - virtualenv venv 
     - source venv/bin/activate
     - pip install arrayfire
     - python -m arrayfire.tests
 
 install:
     - echo $LD_LIBRARY_PATH
-    - pip3 install arrayfire
+    - pip install arrayfire
 
 script:
-    python3 -m arrayfire.tests
+    python -m arrayfire.tests
