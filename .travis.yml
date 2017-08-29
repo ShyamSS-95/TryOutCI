@@ -38,15 +38,18 @@ before_install:
     - export LD_LIBRARY_PATH=$PWD:$LD_LIBRARY_PATH
     - echo $LD_LIBRARY_PATH
     - cd ../../../../
+    - wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.7.6.tar.gz
+    - tar xzf petsc-3.7.6.tar.gz
+    - cd petsc-3.7.6
+    - ./configure --with-debugging=0 --with-mpi=1 --with-hdf5 --download-hdf5 --download-fblaslapack
+    - make all
     - pip install virtualenv
     - virtualenv venv 
     - source venv/bin/activate
-    - pip install arrayfire
-    - python -m arrayfire.tests
 
 install:
-    - echo $LD_LIBRARY_PATH
     - pip install arrayfire
+    - pip install mpi4py petsc4py
 
 script:
     python -m arrayfire.tests
