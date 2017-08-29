@@ -41,7 +41,7 @@ before_install:
     - wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.7.6.tar.gz
     - tar xzf petsc-3.7.6.tar.gz
     - cd petsc-3.7.6
-    - python2 './configure' '--with-debugging=0' '--with-mpi=1' '--with-hdf5' '--download-hdf5' '--download-fblaslapack'
+    - python2 './configure' '--with-debugging=0' '--with-mpi=1' '--with-hdf5' '--download-hdf5' '--download-f2cblaslapack'
     - cd ..
     - pip install virtualenv
     - virtualenv venv 
