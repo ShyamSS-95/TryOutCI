@@ -42,6 +42,9 @@ before_install:
     - tar xzf petsc-3.7.6.tar.gz
     - cd petsc-3.7.6
     - python2 './configure' '--with-debugging=0' '--with-mpi=1' '--with-hdf5' '--download-hdf5' '--download-f2cblaslapack'
+    - make PETSC_DIR=/home/travis/build/ShyamSS-95/TryOutCI/petsc-3.7.6 PETSC_ARCH=arch-linux2-c-opt all
+    - export PETSC_DIR=/home/travis/build/ShyamSS-95/TryOutCI/petsc-3.7.6
+    - export PETSC_ARCH=arch-linux2-c-opt
     - cd ..
     - pip install virtualenv
     - virtualenv venv 
